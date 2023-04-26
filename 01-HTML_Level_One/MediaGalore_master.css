@@ -13,16 +13,24 @@ Selected Tag {
 
 /*Colors can be names, or codes*/
 
-h1{
+.title{
   color: #1bf768;
+  border: 3px solid white;
 }
 
-h6{
+.profile{
   color: #24e32b;
+  border: 1.5px solid white;
 }
 
-h3{
+.mainFunc{
+  color: #1bf768;
+  border: 2px dotted white;
+}
+
+#signUp{
   color: #24e32b;
+
 }
 
 body{

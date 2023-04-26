@@ -10,9 +10,13 @@
   </head>
   <body>
     <!-- The body contains the actual content -->
-    <h1> Showdom </h1>
+    <h1 class="title"> Showdom </h1>
     <br>
-    <h6>Profile | <a href="Login.html">Logout</a></h6> <img src="C:\Users\jerry\OneDrive\Documents\Pictures\750px-Royal_crown_curved.svg.png" alt="profile image not found">
+    <div class="profile">
+      <img src="C:\Users\jerry\OneDrive\Documents\Pictures\750px-Royal_crown_curved.svg.png" alt="profile image not found">
+      <h6 class="profile"><a href="Profile.html">Profile</a> | <a href="Login.html">Logout</a></h6> 
+    </div>
+    
     <br>
     <!--<form action="">
       <input type="email" name="useremail" value="Email Here">
@@ -22,11 +26,21 @@
     <br>-->
   
     <form>
-      <h3><strong> Add </strong></h3> 
+      <h3 class="mainFunc"><strong> Add </strong></h3> 
       <input type="text" name="addshow" value="">
       <input type="submit" name="" value="Add"> 
     </form>
-    <h3><strong> View </strong></h3>
+
+    <form>
+      <h3 class="mainFunc"><strong> Generate at Random </strong></h3>
+      <label for="randgen"><input type="submit" name="" value="Generate"></label>
+      <input id="randgen" type="text" name="randomshow" placeholder="Placeholder here">
+    </form>
+
+    <p> A pop up here to ask if show should be placed in current</p>
+    <input type="textbox" name="currentShow" placeholder="current">
+    <br>
+    <h3 class="mainFunc"><strong> View </strong></h3>
     <table border="1">
       <thead>
         <th>Date Added</th>
@@ -44,20 +58,6 @@
         </td>
       </tr>
     </table>
-    <!--<ul>
-      <li>1st Placeholder</li>
-      <li>2nd Placeholder</li>
-      <li>3rd Placeholder</li>
-    </ul> -->
-    <!--<h3><strong> Remove </strong></h3>-->
-    <br>
-    <br>
-
-    <form>
-      <h3><strong> Generate at Random </strong><input type="submit" name="" value="Generate"></h3>
-      <label for="randgen">Show: </label>
-      <input id="randgen" type="text" name="randomshow" placeholder="Placeholder here">
-    </form>
     
 
   </body>
