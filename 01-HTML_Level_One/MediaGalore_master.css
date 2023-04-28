@@ -15,7 +15,9 @@ Selected Tag {
 
 .title{
   color: #1bf768;
-  border: 3px solid white;
+  border: 7px solid white;
+  text-align: center;
+  margin-right: 85%;
 }
 
 .profile{
@@ -35,6 +37,8 @@ Selected Tag {
 
 body{
   background-color: #ae17c2;
+  padding: 4%;
+  padding-top: 1%;
 }
 
 table{
