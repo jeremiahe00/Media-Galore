@@ -13,43 +13,154 @@ Selected Tag {
 
 /*Colors can be names, or codes*/
 
-.title{
+.title {
   color: #1bf768;
   border: 7px solid white;
   text-align: center;
   margin-right: 85%;
 }
 
-.profile{
-  color: #24e32b;
-  border: 1.5px solid white;
+#user {
+  position: relative;
+  top: -15px;
 }
 
-.mainFunc{
+.profile {
+  color: #24e32b;
+  /* border: 1.5px solid white; */
+  /* padding-left: 90%; */
+
+}
+
+#userimage {
+  float: right;
+  position: relative;
+  left: -100px;
+  top: 15px;
+}
+
+#userprofile {
+  float: right;
+}
+
+#main {
+  padding-top: 4em;
+}
+
+/* #main form div{
+  display: inline-block;
+} */
+
+.mainFunc {
   color: #1bf768;
-  border: 2px dotted white;
+  border: 3px dotted white;
+  text-align: center;
 }
 
-#signUp{
+#addHeader {
+  margin-right: 70%;
+  position: relative;
+  left: 35%;
+}
+
+#genHeader {
+  margin-right: 18%;
+  position: relative;
+  left: 10%;
+}
+
+#currShow {
+  position: relative;
+  left: 10%;
+}
+
+#viewHeader {
+  margin-right: 75%;
+  position: relative;
+  left: 36%;
+}
+
+#mainFuncAdd {
+  display: inline-block;
+  padding-left: 20em;
+  position: relative;
+  top: 19px;
+}
+
+#mainFuncGen {
+  display: inline-block;
+  padding-left: 13em;
+  position: relative;
+  top: 49px;
+}
+
+#mainFuncView {
+  display: inline-block;
+  position: relative;
+  left: 30em;
+  top: 7em;
+}
+
+#signUp {
   color: #24e32b;
 
 }
 
-body{
+body {
   background-color: #ae17c2;
-  padding: 4%;
+  padding: 6%;
+  padding-right: 4%;
   padding-top: 1%;
+  /* border: 6% solid #24e32b; */
+  /* background-clip: content-box;
+  box-shadow: inset 0 0 100px 30px lightGreen; */
 }
 
-table{
+table {
   border-color: #039908;
   border-width: 3px;
 }
 
-p{
+p {
   color: #000000;
 }
 
-h4{
-  color: rgba(13,90,140,0.5)
+h2 {
+  color: #1bf768;
+  border: 3.5px solid white;
+  text-align: center;
+  margin-left: 37%;
+  margin-right: 43%;
+  margin-top: 5%;
+}
+
+h4 {
+  color: rgba(13, 90, 140, 0.5)
+}
+
+#loginform {
+  border: 3.5px none white;
+  margin-left: 37%;
+  margin-right: 43%;
+  position: relative;
+  top: 5em;
+}
+
+#signupform {
+  border: 3.5px none white;
+  margin-left: 37%;
+  margin-right: 43%;
+  position: relative;
+  top: 2em;
+}
+
+#userem {
+  position: relative;
+  left: 25px;
+}
+
+#loginSignupButton {
+  position: relative;
+  left: 48%;
+  top: 5px;
 }
