@@ -15,9 +15,10 @@ Selected Tag {
 
 .title {
   color: #1bf768;
-  border: 7px solid white;
+  /* border: 7px solid white; */
   text-align: center;
-  margin-right: 85%;
+  /* margin-right: 85%; */
+  background-color: #000000;
 }
 
 #user {
@@ -35,8 +36,8 @@ Selected Tag {
 #userimage {
   float: right;
   position: relative;
-  left: -100px;
-  top: 15px;
+  left: -145px;
+  top: -8px;
 }
 
 #userprofile {
@@ -44,12 +45,8 @@ Selected Tag {
 }
 
 #main {
-  padding-top: 4em;
+  padding-top: 5em;
 }
-
-/* #main form div{
-  display: inline-block;
-} */
 
 .mainFunc {
   color: #1bf768;
@@ -61,55 +58,53 @@ Selected Tag {
   margin-right: 70%;
   position: relative;
   left: 35%;
+  background-color: #000000;
 }
 
 #genHeader {
-  margin-right: 18%;
+  margin-right: 66%;
   position: relative;
-  left: 10%;
+  left: 18%;
+  background-color: #000000;
 }
 
 #currShow {
   position: relative;
-  left: 10%;
+  left: 17%;
+  color: rgba(0, 0, 0, 1);
 }
 
 #viewHeader {
   margin-right: 75%;
   position: relative;
   left: 36%;
+  background-color: #000000;
 }
 
 #mainFuncAdd {
   display: inline-block;
-  padding-left: 20em;
+  /* padding-left: 15em;
   position: relative;
-  top: 19px;
+  top: 50px; */
 }
 
 #mainFuncGen {
   display: inline-block;
-  padding-left: 13em;
+  /* padding-left: 5em;
   position: relative;
-  top: 49px;
+  top: 49px; */
 }
 
 #mainFuncView {
   display: inline-block;
-  position: relative;
-  left: 30em;
-  top: 7em;
-}
-
-#signUp {
-  color: #24e32b;
-
+  /* position: relative;
+  left: 27em;
+  top: 6em; */
 }
 
 body {
   background-color: #ae17c2;
-  padding: 6%;
-  padding-right: 4%;
+  padding: 4%;
   padding-top: 1%;
   /* border: 6% solid #24e32b; */
   /* background-clip: content-box;
@@ -117,8 +112,10 @@ body {
 }
 
 table {
-  border-color: #039908;
-  border-width: 3px;
+  border: 4px solid #1bf768;
+  background-color: #e24cf6;
+  /* border-color: #039908;
+  border-width: 4px; */
 }
 
 p {
@@ -146,6 +143,13 @@ h4 {
   top: 5em;
 }
 
+#signUp {
+  color: #24e32b;
+  background-color: #000000;
+  /* margin-left: 35%;
+  margin-right: 35%; */
+}
+
 #signupform {
   border: 3.5px none white;
   margin-left: 37%;
@@ -154,13 +158,41 @@ h4 {
   top: 2em;
 }
 
-#userem {
+/* #userem {
   position: relative;
-  left: 25px;
+  left: 30px;
+} */
+
+.form-text {
+  color: rgba(0, 0, 0, 1);
 }
 
 #loginSignupButton {
   position: relative;
-  left: 48%;
-  top: 5px;
+  left: 37%;
 }
+
+.bg-green {
+  background-color: #eb91f7;
+}
+
+/* .col-lg-6 {
+  position: relative;
+  left: 27px;
+}
+
+.col-md-6{
+  position: relative;
+  left: 47px;
+}
+
+.col-sm-12{
+  position: relative;
+  left: 130px;
+}
+
+.col-sm-12-shift-g{
+  position: relative;
+  left: 92px;
+  top: 25px;
+} */
