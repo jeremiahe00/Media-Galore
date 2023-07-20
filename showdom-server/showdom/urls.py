@@ -16,15 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from healthcheck.views import health_check
-from users.views import UserCreateAPIView
-from rest_framework.authtoken.views import obtain_auth_token
+# from healthcheck.views import health_check
+# from users.views import UserCreateAPIView
+# from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('api.urls'))
     # replace 'healthcheck' with your app's name
     # path('', include('showdom.urls')),
-    path('healthcheck', health_check),
-    path('register/', UserCreateAPIView.as_view(), name='register'),
-    path('api/login/', obtain_auth_token, name='api_token_auth')
+    # path('healthcheck', health_check),
+    # path('register/', UserCreateAPIView.as_view(), name='register'),
+    # path('api/login/', obtain_auth_token, name='api_token_auth')
 ]

@@ -9,19 +9,7 @@ function Logout() {
   return (
     // <div className="App">
     <>
-      <nav className="navbar navbar-expand-lg bg-green">
-        <div className="container-fluid">
-          <h1 className="title"> Showdom </h1>
-          <ul className="navbar-nav mb-2 justify-content-end">
-            <li className="nav-item">
-              <a className="nav-link" href="Login.html">Logout</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="Signup.html">Signup</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      
 
       <br /><br />
       <form action="MediaGalore.html" id="loginform" method="get">
