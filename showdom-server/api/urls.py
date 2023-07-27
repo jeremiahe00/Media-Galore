@@ -15,16 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import Index
-# from healthcheck.views import health_check
+from .views import MediaList, MediaDetails
+# media_list, media_details
+from healthcheck.views import health_check
 # from users.views import UserCreateAPIView
 # from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
-    path('', Index),
+    path('medias/', MediaList.as_view()),
+    path('medias/<int:id>/', MediaDetails.as_view()),
+    # path('medias/', media_list),
+    # path('medias/<int:pk>/', media_details),
     # replace 'healthcheck' with your app's name
     # path('', include('showdom.urls')),
-    # path('healthcheck', health_check),
+    path('healthcheck/', health_check),
     # path('register/', UserCreateAPIView.as_view(), name='register'),
     # path('api/login/', obtain_auth_token, name='api_token_auth')
 ]
