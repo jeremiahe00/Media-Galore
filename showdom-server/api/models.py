@@ -32,6 +32,14 @@ class Media(models.Model):
         max_length=2,
         choices=Source.choices,
     )
+    # class Status(models.TextChoices):
+    #     NEW = "NEW", _("New")
+    #     WATCHING = "WAT", _("Watching")
+    #     COMPLETED = "COM", _("Completed")
+    # source = models.CharField(
+    #     max_length=3,
+    #     choices=Status.choices,
+    # )
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     

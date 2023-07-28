@@ -1,15 +1,75 @@
 from django.shortcuts import render, HttpResponse
 from .models import Media
-from .serializers import MediaSerializer
+from .serializers import MediaSerializer, UserSerializer
 from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import APIView
+from rest_framework import generics, mixins
+from rest_framework import viewsets
+from django.shortcuts import get_object_or_404
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
 
+
+
+class MediaViewSet(viewsets.ModelViewSet):
+    queryset = Media.objects.all()
+    serializer_class = MediaSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
+    
+    
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = (TokenAuthentication,)
+    
+
+
+
+
+''' version 3
+class MediaList(generics.GenericAPIView, mixins.ListModelMixin,
+                mixins.CreateModelMixin):
+    
+    queryset = Media.objects.all()
+    serializer_class = MediaSerializer
+    
+    def get(self, request):
+        return self.list(request)
+    
+    def post(self, request):
+        return self.create(request)
+    
+    
+    
+class MediaDetails(generics.GenericAPIView, mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin, mixins.DestroyModelMixin):
+    
+    queryset = Media.objects.all()
+    serializer_class = MediaSerializer
+    
+    lookup_field = 'id'
+    
+    def get(self, request, id):
+        return self.retrieve(request, id=id)
+    
+    def put(self, request, id):
+        return self.update(request, id=id)
+    
+    def delete(self, request, id):
+        return self.destroy(request, id=id)
+    
+    
+    
 # Create your views here.
-
+### version 2
 class MediaList(APIView):
     
     def get(self, request):
@@ -53,7 +113,7 @@ class MediaDetails(APIView):
         media.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-'''
+### step 1
 @api_view(['GET', 'POST'])
 def media_list(request):
     if request.method == 'GET':
