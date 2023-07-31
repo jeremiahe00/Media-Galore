@@ -5,6 +5,7 @@ import { Button } from "./components/Button";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from "./routes/Home"
 import Logout from "./routes/Logout";
+import Profile from "./routes/Profile";
 
 function App() {
   return (
@@ -26,20 +27,27 @@ function App() {
         <div className="container-fluid">
           <h1 className="title"> Showdom </h1>
           <ul className="navbar-nav mb-2 justify-content-end">
-            <li className="nav-item">
+            <div className="nav-item">
             <Link to="/" className="nav-link">Home</Link>
-            </li>
-            <li className="nav-item">
-            <Link to="/about" className="nav-link">About</Link>
-            </li>
-            <li className="nav-item">
+            </div>
+            <div className="nav-item">
+            <img
+                  src="C:/Users/jerry/OneDrive/Documents/Pictures/750px-Royal_crown_curved.svg.png"
+                  alt="profile not found"
+                  width="40px"
+                  height="40px"
+                />
+            <Link to="/profile" className="nav-link">Profile</Link>
+            </div>
+            <div className="nav-item">
             <Link to="/logout" className="nav-link">Logout</Link>
-            </li>
+            </div>
           </ul>
         </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile/>} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
 
