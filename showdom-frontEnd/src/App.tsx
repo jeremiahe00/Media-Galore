@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Button } from "./components/Button";
@@ -7,7 +7,11 @@ import Home from "./routes/Home"
 import Logout from "./routes/Logout";
 import Profile from "./routes/Profile";
 
+
 function App() {
+
+  
+
   return (
     <Router>
       {/* <nav>

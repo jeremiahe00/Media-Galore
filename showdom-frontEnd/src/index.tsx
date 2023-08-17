@@ -3,7 +3,30 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {Route, Routes, BrowserRouter} from 'react-router-dom';
+import {CookiesProvider} from 'react-cookie';
+import Home from "./routes/Home"
+import Logout from "./routes/Logout";
+import Profile from "./routes/Profile";
+
+function Router() {
+
+  return(
+    <CookiesProvider>
+    <BrowserRouter>
+    
+    <Routes>
+      <Route path = '/' Component = {Home}/>
+      <Route path = '/profile' Component = {Profile}/>
+      <Route path = '/logout' Component={Logout}/>
+    </Routes>
+
+    </BrowserRouter>
+    </CookiesProvider>
+  );
+
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +34,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     {/* <BrowserRouter> */}
-      <App />
+      <Router />
     {/* </BrowserRouter> */}
   </React.StrictMode>
 );
