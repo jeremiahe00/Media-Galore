@@ -2,14 +2,16 @@
 
 
 import React from 'react'
-// import APIService from '../../service/APIService'
+import APIService from '../../service/APIService'
 import Media from '../../models/Media'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 interface FormMediaProps {
     medias: Media[];
+    // media: Media;
     editBtn: (media: Media) => void;
+    deleteBtn: (media: Media) => void;
 }
 
 function MediaList(props:FormMediaProps) {
@@ -19,11 +21,24 @@ function MediaList(props:FormMediaProps) {
         props.editBtn(media)
     }
 
-//     const deleteBtn = (media:Media) => {
-//         APIService.DeleteMedia(media.id)
-//         .then(() => props.deleteBtn(media))
-//         .catch(error => console.log(error))
-//     }
+    // const deleteBtn = (media: Media) => {
+    //   const existing_media = medias.map(mymedia => {
+    //     if(mymedia.id === media.id) {
+    //       return media;
+    //     } else {
+    //       return mymedia;
+    //     }
+    //   })
+    // }
+
+    const deleteBtn = (media:Media) => {
+      if (media?.id) {
+        APIService.DeleteMedia(media.id)
+        .then(() => props.deleteBtn(media))
+        .catch(error => console.log(error))
+      }
+        
+    }
 
 //     const randomizeBtn = (media:Media) => {
 //         APIService.RandomizeMedia(media)
@@ -48,8 +63,8 @@ function MediaList(props:FormMediaProps) {
         <tbody>
         {props.medias.map(media => { // think of removing this return
             return (
-            //   <tr key = {media.id}>
-            <tr>
+              <tr key = {media.id}>
+             {/* <tr> */}
                 {/* <table> */}
                         
                         {/* <tr> */}
@@ -68,10 +83,11 @@ function MediaList(props:FormMediaProps) {
                             </td>
                             <td>
                               <button
-                                type="button"
+                                // type="button"
                                 className="btn btn-danger"
-                                name=""
-                                value="Remove"
+                                // name=""
+                                // value="Remove"
+                                onClick={() => deleteBtn(media)}
                               >
                                 Remove
                               </button>

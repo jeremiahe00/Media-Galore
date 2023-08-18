@@ -6,40 +6,45 @@
 import React, { Component } from 'react'
 import Media from '../models/Media'
 
+
 class APIService {
   
 
 
-    static AddMedia = async(body:Media, token:string) => {
+    static AddMedia = async(body:Media) => {
+        console.log(JSON.stringify(body));
         const userResponse = await fetch('http://127.0.0.1:8000/api/medias/', {method: "POST", 
         headers: {
             'Content-Type': 'application/json',
             // 'Authorization': `Token ${token}`
             'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
         }, 
-        body: JSON.stringify({body})})
+        body: JSON.stringify(body)})
         .then(resp => resp.json())
 
         return userResponse
     }
 
-    static UpdateMedia = async(media_id:string, body:Media, token:string) => {
+    static UpdateMedia = async(media_id:number, body:Media) => {
+        console.log(JSON.stringify({body}));
         const userResponse = await fetch(`http://127.0.0.1:8000/api/medias/${media_id}/`, {method: "PUT", 
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Token ${token}`
+            // 'Authorization': `Token ${token}`
+            'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
         }, 
-        body: JSON.stringify({body})})
+        body: JSON.stringify(body)})
         .then(resp => resp.json())
 
         return userResponse
     }
 
-    static DeleteMedia = async(media_id:string, token:string) => {
+    static DeleteMedia = async(media_id:number) => {
         const userResponse = await fetch(`http://127.0.0.1:8000/api/medias/${media_id}/`, {method: "DELETE", 
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Token ${token}`
+            // 'Authorization': `Token ${token}`
+            'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
         }
     })}
 

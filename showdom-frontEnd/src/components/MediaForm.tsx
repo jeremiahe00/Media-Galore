@@ -7,26 +7,27 @@ import { useCookies } from 'react-cookie';
 import Media from '../models/Media';
 
 
-// interface Media {
-//     title: string;
-// }
+
+
 
 interface FormMediaProps {
     media: Media | null;
-    // updatedInformation: (media: Media) => void;
+    updatedInformation: (media: Media) => void;
     insertedInformation: (media: Media) => void;
 }
 
 
 
+
 function MediaForm(props:FormMediaProps) {
 
-    
-    // const [medias, setMedias] = useState<Media[]>([]) //[]
+
+    const [medias, setMedias] = useState<Media[]>([]) //[]
 
 
     const [title, setTitle] = useState<string>('')
     const [source, setSource] = useState<string>('')
+    const [id, setId] = useState<number | null>(null)
     // const [created_date, setCreatedDate] = useState<string>('')
     // const [updated_date, setUpdatedDate] = useState<string>('')
     // // const [user, setUser] = useState(props.user)
@@ -35,10 +36,16 @@ function MediaForm(props:FormMediaProps) {
 
 
     useEffect(() => {
+        
         if (props.media) {
+            if (props.media.id !== undefined) {
+            setId(props.media.id)
+            // console.log(props.media.id)
+        }
             setTitle(props.media.title)
             setSource(props.media.source)
-        }
+        } 
+
         
     //     setSource(props.source)
     //     setCreatedDate(props.updated_date)
@@ -47,46 +54,53 @@ function MediaForm(props:FormMediaProps) {
         
     }, [props.media])
 
-
-    // const insertedInformation = (media:Media) => {
-
-    //     const new_media = [...medias, media]
-    //     setMedias(new_media)
+    // why do I need this here???? comment out below
+    const updatedInformation = (media:Media) => { 
+        const existing_media = medias.map(mymedia => {
+          if(mymedia.id === media.id) {
+            return media;
+          } else {
+            return mymedia;
+          }
+        })
     
-    //   }
-
+        setMedias(existing_media)
     
-
-    //   const updatedInformation = (media:Media) => {
-    //     const new_media = medias.map(mymedia => {
-    //       if(mymedia.id === media.id) {
-    //         return media;
-    //       } else {
-    //         return mymedia;
-    //       }
-    //     })
+      };
     
-    //     setMedias(new_media)
+    const updateMedia = () => {
+        
+
+        if (props.media?.id) {
+            // if (props.media !== null)
+            // console.log(props.media.id)
+
+            const editedMedia:Media = {
+                // id: props.media.id,
+                title: title,
+                source: source
+            }
+
+            // if (props.media !== null)
+            // console.log(editedMedia)
     
-    //   }
+            APIService.UpdateMedia(props.media.id, editedMedia)//, token['mytoken'])
+            .then(resp => updatedInformation(resp))
+        
+        }
+        
 
-
-    
-    // const updateBook = () => {
-    //     APIService.UpdateMedia(props.id, {id:props.id, title, source:'CR', created_date, updated_date:'Date.now'}, token['mytoken'])
-    //     .then(resp => updatedInformation(resp))
-
-    // }
+    }
 
     const addMedia = () => {
-        // console.log(title)
-        // console.log(source)
-        const media = {
+
+        const addedMedia = {
+            // id: null,
             title: title,
             source: source
         }
-        // console.log(media)
-        APIService.AddMedia(media, token['mytoken']) // why 400 bad request?
+        
+        APIService.AddMedia(addedMedia) 
         .then(resp => props.insertedInformation(resp));
         
     }
@@ -109,8 +123,11 @@ function MediaForm(props:FormMediaProps) {
                 <input type='text' className='form-control' id='source' placeholder='list options'
                 value = {source} onChange={e => setSource(e.target.value)}
 
+                
+
                 />
 
+                {/* <h1>{props.media.id ? id : <h2>None</h2>}</h1> */}
 
                 {/* <label htmlFor = 'created_date' className = 'form-label'>Created date</label>
                 <input type='text' className='form-control' id='created_date' placeholder='created'
@@ -133,10 +150,8 @@ function MediaForm(props:FormMediaProps) {
                 <br/>
                 
                 {
-                    // props.id ? <button onClick={updateBook} className='btn btn-success'>Update Media</button> 
-                    // : 
-                    
-                    <button onClick={addMedia} className='btn btn-success'>Add Media</button>
+                    props.media.id ? <button onClick={updateMedia} className='btn btn-success'>Update Media</button> 
+                    : <button onClick={addMedia} className='btn btn-success'>Add Media</button>
                 }
 
                 

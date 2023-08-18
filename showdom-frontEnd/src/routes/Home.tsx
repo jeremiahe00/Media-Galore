@@ -8,6 +8,7 @@ import MediaForm from "../components/MediaForm";
 import { useCookies } from "react-cookie";
 import MediaList from "../components/table/MediaList";
 
+
 function App() {
 
 
@@ -33,41 +34,43 @@ function App() {
 
   }, []) // add token here?
 
-    // const media: Media = {
-    // id: '',
-    // title: '',
-    // source: 'CR',
-    // created_date: 'now',
-    // updated_date: 'then'
-  // };
-
-
-  // const updatedInformation = (media:Media) => {
-  //   const new_media = medias.map(mymedia => {
-  //     if(mymedia.id === media.id) {
-  //       return media;
-  //     } else {
-  //       return mymedia;
-  //     }
-  //   })
-
-  //   setMedias(new_media)
-
-  // }
-
 
   const editBtn = (media:Media) => {
     setEditMedia(media)
   }
 
+  const deleteBtn = (media:Media) => {
+    const curr_media = medias.filter(mymedia => {
+      if(mymedia.id === media.id) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+
+    setMedias(curr_media)
+  }
 
   const mediaForm = () => {
-    setEditMedia({title:'', source:''})
+    setEditMedia({title:'', source:''}) //id?
   }
 
   const insertedInformation = (media: Media) => {
     const newMedia = [...medias, media];
     setMedias(newMedia);
+  };
+
+  const updatedInformation = (media:Media) => {
+    const existing_media = medias.map(mymedia => {
+      if(mymedia.id === media.id) {
+        return media;
+      } else {
+        return mymedia;
+      }
+    })
+
+    setMedias(existing_media)
+
   };
 
 
@@ -165,7 +168,7 @@ function App() {
             </div>
 
             <br />
-            <div className="row">
+            {/* <div className="row">
               <div className="col-xl-4 col-lg-3 col-md-3 col-sm-2"></div>
               <div className="col-xl-6 col-lg-6 col-md-8 col-sm-9">
                 <div id="mainFuncView">
@@ -209,15 +212,14 @@ function App() {
                 </div>
               </div>
               <div className="col-xl-2 col-lg-3 col-md-1 col-sm-1"></div>
-            </div>
+            </div> */}
           </div>
         </div>
 
 
-        <MediaList medias = {medias} editBtn={editBtn} />
+        <MediaList medias = {medias} editBtn={editBtn} deleteBtn={deleteBtn} />
 
-        {editMedia ? <MediaForm media = {editMedia} insertedInformation={insertedInformation} /> : null}
-        {/* <MediaForm media = {editMedia} insertedInformation={insertedInformation} /> */}
+        {editMedia ? <MediaForm media = {editMedia} updatedInformation={updatedInformation} insertedInformation={insertedInformation} /> : null}
 
       </div>
   );

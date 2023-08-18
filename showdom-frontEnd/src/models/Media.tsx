@@ -3,7 +3,7 @@
 
 
 interface Media {
-    // id: number; //number;
+    id?: number;
     title: string;
     source: string;
     // created_date: string;
@@ -11,9 +11,5 @@ interface Media {
     // user: string;
 }
 
-interface FullMedia {
-    id: number; //number;
-    media: Media;
-}
 
 export default Media
