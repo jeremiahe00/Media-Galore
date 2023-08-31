@@ -1,0 +1,198 @@
+/*
+This is a comment
+*/
+
+/*
+General Form is:
+
+Selected Tag {
+  property: value;
+}
+
+*/
+
+/*Colors can be names, or codes*/
+
+.title {
+  color: #1bf768;
+  /* border: 7px solid white; */
+  text-align: center;
+  /* margin-right: 85%; */
+  background-color: #000000;
+}
+
+#user {
+  position: relative;
+  top: -15px;
+}
+
+.profile {
+  color: #24e32b;
+  /* border: 1.5px solid white; */
+  /* padding-left: 90%; */
+
+}
+
+#userimage {
+  float: right;
+  position: relative;
+  left: -145px;
+  top: -8px;
+}
+
+#userprofile {
+  float: right;
+}
+
+#main {
+  padding-top: 5em;
+}
+
+.mainFunc {
+  color: #1bf768;
+  border: 3px dotted white;
+  text-align: center;
+}
+
+#addHeader {
+  margin-right: 70%;
+  position: relative;
+  left: 35%;
+  background-color: #000000;
+}
+
+#genHeader {
+  margin-right: 66%;
+  position: relative;
+  left: 18%;
+  background-color: #000000;
+}
+
+#currShow {
+  position: relative;
+  left: 17%;
+  color: rgba(0, 0, 0, 1);
+}
+
+#viewHeader {
+  margin-right: 75%;
+  position: relative;
+  left: 36%;
+  background-color: #000000;
+}
+
+#mainFuncAdd {
+  display: inline-block;
+  /* padding-left: 15em;
+  position: relative;
+  top: 50px; */
+}
+
+#mainFuncGen {
+  display: inline-block;
+  /* padding-left: 5em;
+  position: relative;
+  top: 49px; */
+}
+
+#mainFuncView {
+  display: inline-block;
+  /* position: relative;
+  left: 27em;
+  top: 6em; */
+}
+
+body {
+  background-color: #ae17c2;
+  padding: 4%;
+  padding-top: 1%;
+  /* border: 6% solid #24e32b; */
+  /* background-clip: content-box;
+  box-shadow: inset 0 0 100px 30px lightGreen; */
+}
+
+table {
+  border: 4px solid #1bf768;
+  background-color: #e24cf6;
+  /* border-color: #039908;
+  border-width: 4px; */
+}
+
+p {
+  color: #000000;
+}
+
+h2 {
+  color: #1bf768;
+  border: 3.5px solid white;
+  text-align: center;
+  margin-left: 37%;
+  margin-right: 43%;
+  margin-top: 5%;
+}
+
+h4 {
+  color: rgba(13, 90, 140, 0.5)
+}
+
+#loginform {
+  border: 3.5px none white;
+  margin-left: 37%;
+  margin-right: 43%;
+  position: relative;
+  top: 5em;
+}
+
+#signUp {
+  color: #24e32b;
+  background-color: #000000;
+  /* margin-left: 35%;
+  margin-right: 35%; */
+}
+
+#signupform {
+  border: 3.5px none white;
+  margin-left: 37%;
+  margin-right: 43%;
+  position: relative;
+  top: 2em;
+}
+
+/* #userem {
+  position: relative;
+  left: 30px;
+} */
+
+.form-text {
+  color: rgba(0, 0, 0, 1);
+}
+
+#loginSignupButton {
+  position: relative;
+  left: 37%;
+}
+
+.bg-green {
+  background-color: #eb91f7;
+}
+
+/* .col-lg-6 {
+  position: relative;
+  left: 27px;
+}
+
+.col-md-6{
+  position: relative;
+  left: 47px;
+}
+
+.col-sm-12{
+  position: relative;
+  left: 130px;
+}
+
+.col-sm-12-shift-g{
+  position: relative;
+  left: 92px;
+  top: 25px;
+} */
