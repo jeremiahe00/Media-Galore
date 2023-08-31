@@ -13,6 +13,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
+from rest_framework.decorators import action
+from django.contrib.auth import authenticate, login
 
 
 
@@ -27,8 +29,29 @@ class MediaViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = (TokenAuthentication,)
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
+    
+    @action(detail=False, methods=['post'])
+    def login(self, request):
+        print('we are about to login')
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        # Check if the user exists
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response({'error': 'User does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Authenticate the user
+        authenticated_user = authenticate(username=username, password=password)
+
+        if authenticated_user:
+            login(request, authenticated_user)
+            return Response({'message': 'Login successful.'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Invalid credentials.'}, status=status.HTTP_401_UNAUTHORIZED)
     
 
 

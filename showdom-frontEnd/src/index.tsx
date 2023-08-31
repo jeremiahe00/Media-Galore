@@ -7,8 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
 import {CookiesProvider} from 'react-cookie';
 import Home from "./routes/Home"
-import Logout from "./routes/Logout";
+// import Logout from "./routes/Logout";
 import Profile from "./routes/Profile";
+import Login from './components/Login';
 
 function Router() {
 
@@ -17,9 +18,9 @@ function Router() {
     <BrowserRouter>
     
     <Routes>
-      <Route path = '/' Component = {Home}/>
+      <Route path = '/medias' Component = {Home}/>
       <Route path = '/profile' Component = {Profile}/>
-      <Route path = '/logout' Component={Logout}/>
+      <Route path = '/' Component={Login}/>
     </Routes>
 
     </BrowserRouter>

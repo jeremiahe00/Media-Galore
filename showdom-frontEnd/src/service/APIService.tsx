@@ -4,20 +4,21 @@
 
 
 import React, { Component } from 'react'
-import Media from '../models/Media'
+import { RetrieveMediaParams, CreateMediaParams} from '../models/Models'
+import User from '../models/User';
 
 
 class APIService {
   
 
 
-    static AddMedia = async(body:Media) => {
+    static AddMedia = async(body:CreateMediaParams, token:string) => {
         console.log(JSON.stringify(body));
         const userResponse = await fetch('http://127.0.0.1:8000/api/medias/', {method: "POST", 
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Token ${token}`
-            'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
+            'Authorization': `Token ${token}`
+            // 'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
         }, 
         body: JSON.stringify(body)})
         .then(resp => resp.json())
@@ -25,13 +26,13 @@ class APIService {
         return userResponse
     }
 
-    static UpdateMedia = async(media_id:number, body:Media) => {
+    static UpdateMedia = async(media_id:number, body:RetrieveMediaParams, token:string) => {
         console.log(JSON.stringify({body}));
         const userResponse = await fetch(`http://127.0.0.1:8000/api/medias/${media_id}/`, {method: "PUT", 
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Token ${token}`
-            'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
+            'Authorization': `Token ${token}`
+            // 'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
         }, 
         body: JSON.stringify(body)})
         .then(resp => resp.json())
@@ -39,12 +40,12 @@ class APIService {
         return userResponse
     }
 
-    static DeleteMedia = async(media_id:number) => {
+    static DeleteMedia = async(media_id:number, token:string) => {
         const userResponse = await fetch(`http://127.0.0.1:8000/api/medias/${media_id}/`, {method: "DELETE", 
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Token ${token}`
-            'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
+            'Authorization': `Token ${token}`
+            // 'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
         }
     })}
 
@@ -61,36 +62,39 @@ class APIService {
     //     return userResponse
     // }
 
-    // static LoginUser(body:User) {
+    static async LoginUser(body:User) {
 
-    //     return fetch('http://127.0.0.1:8000/auth/', {
-    //         'method': 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
+        let authRetrieval = await fetch('http://127.0.0.1:8000/auth/', {
+            'method': 'POST',
+            headers: {
+                'Content-Type': 'application/json',
                 
-    //         },
-    //         body:JSON.stringify(body)
+            },
+            body:JSON.stringify(body)
 
 
-    //     }).then(resp => resp.json())
+        });//.then(resp => console.log(resp.status))
+        // let authData = authRetrieval;
+        // console.log(authRetrieval)
+        return authRetrieval
 
-    // }
+    }
 
 
-    // static RegisterUser(body:User) {
+    static RegisterUser(body:User) {
 
-    //     return fetch('http://127.0.0.1:8000/api/users/', {
-    //         'method': 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
+        return fetch('http://127.0.0.1:8000/api/users/', {
+            'method': 'POST',
+            headers: {
+                'Content-Type': 'application/json',
                 
-    //         },
-    //         body:JSON.stringify(body)
+            },
+            body:JSON.stringify(body)
 
 
-    //     }).then(resp => resp.json())
+        }).then(resp => resp.json())
 
-    // }
+    }
 
 }
 

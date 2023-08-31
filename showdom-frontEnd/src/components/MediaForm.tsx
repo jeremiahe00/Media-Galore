@@ -4,25 +4,25 @@
 import React, {useState, useEffect} from 'react'
 import APIService from '../service/APIService'
 import { useCookies } from 'react-cookie';
-import Media from '../models/Media';
+import { RetrieveMediaParams, CreateMediaParams } from '../models/Models';
 
 
 
 
 
 interface FormMediaProps {
-    media: Media | null;
-    updatedInformation: (media: Media) => void;
-    insertedInformation: (media: Media) => void;
+    media: RetrieveMediaParams | null;
+    updatedInformation: (media: RetrieveMediaParams) => void;
+    insertedInformation: (media: RetrieveMediaParams) => void;
 }
 
 
 
 
-function MediaForm(props:FormMediaProps) {
+function MediaForm({media, updatedInformation, insertedInformation}: FormMediaProps) {
 
 
-    const [medias, setMedias] = useState<Media[]>([]) //[]
+    // const [medias, setMedias] = useState<Media[]>([]) //[]
 
 
     const [title, setTitle] = useState<string>('')
@@ -37,13 +37,13 @@ function MediaForm(props:FormMediaProps) {
 
     useEffect(() => {
         
-        if (props.media) {
-            if (props.media.id !== undefined) {
-            setId(props.media.id)
+        if (media) {
+            if (media.id !== undefined) {
+            setId(media.id)
             // console.log(props.media.id)
         }
-            setTitle(props.media.title)
-            setSource(props.media.source)
+            setTitle(media.title)
+            setSource(media.source)
         } 
 
         
@@ -52,31 +52,31 @@ function MediaForm(props:FormMediaProps) {
     //     setUpdatedDate(props.updated_date)
     //     // setUser(props.user)
         
-    }, [props.media])
+    }, [media])
 
     // why do I need this here???? comment out below
-    const updatedInformation = (media:Media) => { 
-        const existing_media = medias.map(mymedia => {
-          if(mymedia.id === media.id) {
-            return media;
-          } else {
-            return mymedia;
-          }
-        })
+    // const updatedInformation = (media:Media) => { 
+    //     const existing_media = medias.map(mymedia => {
+    //       if(mymedia.id === media.id) {
+    //         return media;
+    //       } else {
+    //         return mymedia;
+    //       }
+    //     })
     
-        setMedias(existing_media)
+    //     setMedias(existing_media)
     
-      };
+    //   };
     
     const updateMedia = () => {
         
 
-        if (props.media?.id) {
+        if (media?.id) {
             // if (props.media !== null)
             // console.log(props.media.id)
 
-            const editedMedia:Media = {
-                // id: props.media.id,
+            const editedMedia:RetrieveMediaParams = {
+                id: media.id,
                 title: title,
                 source: source
             }
@@ -84,7 +84,7 @@ function MediaForm(props:FormMediaProps) {
             // if (props.media !== null)
             // console.log(editedMedia)
     
-            APIService.UpdateMedia(props.media.id, editedMedia)//, token['mytoken'])
+            APIService.UpdateMedia(media.id, editedMedia, token['mytoken'])//, token['mytoken'])
             .then(resp => updatedInformation(resp))
         
         }
@@ -95,13 +95,13 @@ function MediaForm(props:FormMediaProps) {
     const addMedia = () => {
 
         const addedMedia = {
-            // id: null,
+            // id: props.media.id,
             title: title,
             source: source
         }
         
-        APIService.AddMedia(addedMedia) 
-        .then(resp => props.insertedInformation(resp));
+        APIService.AddMedia(addedMedia, token['mytoken']) 
+        .then(resp => insertedInformation(resp));
         
     }
 
@@ -110,7 +110,7 @@ function MediaForm(props:FormMediaProps) {
     
     <div>
       
-        {props.media ? (
+        {media ? (
 
             <div className='mb-3'>
                 <label htmlFor = 'title' className = 'form-label'>Title</label>
@@ -150,7 +150,7 @@ function MediaForm(props:FormMediaProps) {
                 <br/>
                 
                 {
-                    props.media.id ? <button onClick={updateMedia} className='btn btn-success'>Update Media</button> 
+                    media.id ? <button onClick={updateMedia} className='btn btn-success'>Update Media</button> 
                     : <button onClick={addMedia} className='btn btn-success'>Add Media</button>
                 }
 

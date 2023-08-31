@@ -3,38 +3,29 @@
 
 import React from 'react'
 import APIService from '../../service/APIService'
-import Media from '../../models/Media'
+import {CreateMediaParams, RetrieveMediaParams} from '../../models/Models'
+import { useCookies } from 'react-cookie';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 interface FormMediaProps {
-    medias: Media[];
-    // media: Media;
-    editBtn: (media: Media) => void;
-    deleteBtn: (media: Media) => void;
+    medias: RetrieveMediaParams[];
+    editBtn: (media: RetrieveMediaParams) => void;
+    deleteBtn: (media: RetrieveMediaParams) => void;
 }
 
-function MediaList(props:FormMediaProps) {
+function MediaList({medias, editBtn, deleteBtn}: FormMediaProps) {
 
+  const [token] = useCookies<string>(['mytoken'])
 
-    const editBtn = (media:Media) => {
-        props.editBtn(media)
+    const editBtnMediaList = (media:RetrieveMediaParams) => {
+        editBtn(media)
     }
 
-    // const deleteBtn = (media: Media) => {
-    //   const existing_media = medias.map(mymedia => {
-    //     if(mymedia.id === media.id) {
-    //       return media;
-    //     } else {
-    //       return mymedia;
-    //     }
-    //   })
-    // }
-
-    const deleteBtn = (media:Media) => {
+    const deleteBtnMediaList = (media:RetrieveMediaParams) => {
       if (media?.id) {
-        APIService.DeleteMedia(media.id)
-        .then(() => props.deleteBtn(media))
+        APIService.DeleteMedia(media.id, token['mytoken'])
+        .then(() => deleteBtn(media))
         .catch(error => console.log(error))
       }
         
@@ -61,7 +52,7 @@ function MediaList(props:FormMediaProps) {
         </thead>
 
         <tbody>
-        {props.medias.map(media => { // think of removing this return
+        {medias.map(media => { // think of removing this return
             return (
               <tr key = {media.id}>
              {/* <tr> */}
@@ -75,7 +66,7 @@ function MediaList(props:FormMediaProps) {
                             {/* <div className="input-group mb-3"> */}
                               <button
                                 className="btn btn-warning"
-                                onClick={() => editBtn(media)}
+                                onClick={() => editBtnMediaList(media)}
                               >
                                 Edit
                               </button>
@@ -87,7 +78,7 @@ function MediaList(props:FormMediaProps) {
                                 className="btn btn-danger"
                                 // name=""
                                 // value="Remove"
-                                onClick={() => deleteBtn(media)}
+                                onClick={() => deleteBtnMediaList(media)}
                               >
                                 Remove
                               </button>

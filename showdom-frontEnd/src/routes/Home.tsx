@@ -3,10 +3,11 @@ import logo from "./logo.svg";
 import "../App.css";
 import { Button } from "../components/Button";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Media from "../models/Media";
+import { CreateMediaParams, RetrieveMediaParams} from "../models/Models";
 import MediaForm from "../components/MediaForm";
 import { useCookies } from "react-cookie";
 import MediaList from "../components/table/MediaList";
+import { useNavigate } from "react-router-dom";
 
 
 function App() {
@@ -14,10 +15,10 @@ function App() {
 
 
 
-  const [medias, setMedias] = useState<Media[]>([]) //[]
-  const [editMedia, setEditMedia] = useState<Media | null>(null) //null
-  // const [token, setToken, removeToken] = useCookies(['mytoken'])
-  // let navigate = useNavigate()
+  const [medias, setMedias] = useState<RetrieveMediaParams[]>([]) //[]
+  const [editMedia, setEditMedia] = useState<RetrieveMediaParams | null>(null) //null
+  const [token, setToken, removeToken] = useCookies(['mytoken'])
+  let navigate = useNavigate()
 
 
   useEffect(() => {
@@ -25,7 +26,7 @@ function App() {
     'method': 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Token 1576bb8f98a9899a14d6520d534b8547ba6b93e8'
+      'Authorization': `Token ${token['mytoken']}`
       }
     })
     .then(resp => resp.json())
@@ -34,12 +35,18 @@ function App() {
 
   }, []) // add token here?
 
+  useEffect(() => {
+    if (!token['mytoken']) {
+      navigate('/')
+    }
+  }, [token])
 
-  const editBtn = (media:Media) => {
+
+  const editBtn = (media:RetrieveMediaParams) => {
     setEditMedia(media)
   }
 
-  const deleteBtn = (media:Media) => {
+  const deleteBtn = (media:RetrieveMediaParams) => {
     const curr_media = medias.filter(mymedia => {
       if(mymedia.id === media.id) {
         return false;
@@ -52,15 +59,15 @@ function App() {
   }
 
   const mediaForm = () => {
-    setEditMedia({title:'', source:''}) //id?
+    setEditMedia({id: 0, title:'', source:''}) // find a way to split this up (adding a new media inserts id=0 at first)
   }
 
-  const insertedInformation = (media: Media) => {
+  const insertedInformation = (media: RetrieveMediaParams) => {
     const newMedia = [...medias, media];
     setMedias(newMedia);
   };
 
-  const updatedInformation = (media:Media) => {
+  const updatedInformation = (media: RetrieveMediaParams) => {
     const existing_media = medias.map(mymedia => {
       if(mymedia.id === media.id) {
         return media;
@@ -73,6 +80,9 @@ function App() {
 
   };
 
+  const logoutBtn = () => {
+    removeToken(token['mytoken'])
+  }
 
 
   return (
@@ -115,6 +125,11 @@ function App() {
             <div className="row">
               <div className="col-xl-3 col-lg-2 col-md-1 "></div>
               <div className="col-xl-3 col-lg-4 col-md-5 col-sm-12">
+                <div className="col">
+                  <button onClick={logoutBtn} className="btn btn-primary">Logout</button>
+
+
+                </div>
                 <form id="mainFuncAdd">
                   <h3 id="addHeader" className="mainFunc">
                     <strong> Add </strong>
